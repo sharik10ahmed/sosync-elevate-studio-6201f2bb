@@ -23,8 +23,14 @@ export function FloatingCallbackButton() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (name.trim().length < 2) return toast.error("Please enter your name.");
-    if (!/^[0-9+\s-]{8,15}$/.test(phone.trim())) return toast.error("Enter a valid phone number.");
+    if (name.trim().length < 2) {
+      toast.error("Please enter your name.");
+      return;
+    }
+    if (!/^[0-9+\s-]{8,15}$/.test(phone.trim())) {
+      toast.error("Enter a valid phone number.");
+      return;
+    }
     addCallback({ name: name.trim().slice(0, 80), phone: phone.trim() });
     toast.success("Callback requested — we'll ring you shortly.");
     setName("");
